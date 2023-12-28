@@ -32,15 +32,15 @@ public class Client2 extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        scroll = new javax.swing.JScrollPane();
+        tableHist = new javax.swing.JTable();
+        btnReturn = new javax.swing.JButton();
+        wallpaper = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tableHist.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -51,34 +51,34 @@ public class Client2 extends javax.swing.JFrame {
                 "Operation", "Date", "Montant"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        scroll.setViewportView(tableHist);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 140, 350, 240));
+        getContentPane().add(scroll, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 140, 350, 240));
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(0, 0, 102));
-        jButton1.setText("< Retourner");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnReturn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnReturn.setForeground(new java.awt.Color(0, 0, 102));
+        btnReturn.setText("< Retourner");
+        btnReturn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnReturnActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
+        getContentPane().add(btnReturn, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Study\\L3\\GL\\Projet\\Code\\projGL\\src\\screens\\banka.jpg")); // NOI18N
-        jLabel1.setText("jLabel1");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1300, 630));
+        wallpaper.setIcon(new javax.swing.ImageIcon("C:\\Study\\L3\\GL\\Projet\\Code\\projGL\\src\\screens\\banka.jpg")); // NOI18N
+        wallpaper.setText("jLabel1");
+        getContentPane().add(wallpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1300, 630));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnActionPerformed
         // TODO add your handling code here:
         //cl1 a=new cl1();
         //a.show();
         dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnReturnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -116,9 +116,9 @@ public class Client2 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JButton btnReturn;
+    private javax.swing.JScrollPane scroll;
+    private javax.swing.JTable tableHist;
+    private javax.swing.JLabel wallpaper;
     // End of variables declaration//GEN-END:variables
 }
