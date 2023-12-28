@@ -132,7 +132,6 @@ public class cl1 extends javax.swing.JFrame {
     private void btnSelectActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnSelectActionPerformed
         // Get the selected row count
         int selectedRowCount = tableCompte.getSelectedRowCount();
-        System.out.println("Selected Row Count: " + selectedRowCount);
 
         // Confirm that one row is selected, not more, not less
         if (selectedRowCount != 1) {
@@ -147,6 +146,12 @@ public class cl1 extends javax.swing.JFrame {
             // Get the selected row index
             int rowIndex = tableCompte.getSelectedRow();
             System.out.println("Selected Row Index: " + rowIndex);
+            //get the selected row's idCompte
+            int idCompte = (int) tableCompte.getValueAt(rowIndex, 0);
+            //go to Client2 screen
+            Client2 c2 = new Client2(idCompte);
+            c2.setVisible(true);
+            // dispose();
         }
 
     }// GEN-LAST:event_btnSelectActionPerformed
