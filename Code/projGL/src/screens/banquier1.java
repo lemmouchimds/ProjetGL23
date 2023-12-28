@@ -107,7 +107,7 @@ public class banquier1 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void button3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button3ActionPerformed
-        Ajclient2 a=new Ajclient2();
+        AddClient a=new AddClient();
 a.show();
 dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_button3ActionPerformed

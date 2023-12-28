@@ -6,6 +6,7 @@ package projgl;
 
 import dto.ClientDto;
 import projgl.db.dbControl;
+import screens.Auth;
 
 /**
  *
@@ -17,28 +18,8 @@ public class ProjGL {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        try {
-
-            dbControl db = new dbControl();
-            var v = db.find(2);
-            v.setAddress(null);
-            
-            System.out.println(v.getAddress());
-            
-            if(db.matExist(2))
-            {
-                System.out.println("ouiiiii");
-                
-            }
-            else
-            {
-                System.out.println("noooon");
-            }
-            
-
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+        Auth screen = new Auth();
+        screen.setVisible(true);
     }
 
 }

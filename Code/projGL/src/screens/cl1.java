@@ -149,7 +149,7 @@ public class cl1 extends javax.swing.JFrame {
             //get the selected row's idCompte
             int idCompte = (int) tableCompte.getValueAt(rowIndex, 0);
             //go to Client2 screen
-            Client2 c2 = new Client2(idCompte);
+            Historique c2 = new Historique(idCompte);
             c2.setVisible(true);
             // dispose();
         }
