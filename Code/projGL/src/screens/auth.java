@@ -162,7 +162,7 @@ public class Auth extends javax.swing.JFrame {
             dbControl db = new dbControl();
             int mat = Integer.parseInt(tfMat.getText());
             if (mat == 0) {
-                banquier1 b = new banquier1();
+                Clients b = new Clients();
                 b.show();
                 dispose();
                 return;

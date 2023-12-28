@@ -256,7 +256,7 @@ public class AddClient extends javax.swing.JFrame {
     }// GEN-LAST:event_tfActActionPerformed
 
     private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnReturnActionPerformed
-        banquier1 a = new banquier1();
+        Clients a = new Clients();
         a.show();
         dispose();
     }// GEN-LAST:event_btnReturnActionPerformed
@@ -314,7 +314,7 @@ public class AddClient extends javax.swing.JFrame {
                     javax.swing.JOptionPane.INFORMATION_MESSAGE);
 
             // Return to the previous screen
-            banquier1 a = new banquier1();
+            Clients a = new Clients();
             a.setVisible(true);
             dispose();
         }

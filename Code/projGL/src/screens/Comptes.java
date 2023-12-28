@@ -150,7 +150,7 @@ public class Comptes extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCreateActionPerformed
 
     private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnActionPerformed
-        banquier1 a = new banquier1();
+        Clients a = new Clients();
         a.show();
         dispose(); 
     }//GEN-LAST:event_btnReturnActionPerformed
