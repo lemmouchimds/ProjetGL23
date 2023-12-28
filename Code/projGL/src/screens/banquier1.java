@@ -4,6 +4,10 @@
  */
 package screens;
 
+import javax.swing.table.DefaultTableModel;
+
+import projgl.db.dbControl;
+
 /**
  *
  * @author HP
@@ -15,7 +19,13 @@ public class banquier1 extends javax.swing.JFrame {
      */
     public banquier1() {
         initComponents();
+        model.addColumn("Matricule");
+        
+
     }
+
+    dbControl dbc = new dbControl();
+    DefaultTableModel model = new DefaultTableModel();
 
     /**
      * This method is called from within the constructor to initialize the form.
