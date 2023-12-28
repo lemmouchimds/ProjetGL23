@@ -28,6 +28,7 @@ public class banquier1 extends javax.swing.JFrame {
 
         button3 = new java.awt.Button();
         button4 = new java.awt.Button();
+        jButton1 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
@@ -45,9 +46,24 @@ public class banquier1 extends javax.swing.JFrame {
         });
         getContentPane().add(button3, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 325, 170, 30));
 
+        button4.setBackground(new java.awt.Color(255, 255, 255));
         button4.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         button4.setLabel("Selectionner un client\n");
+        button4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button4ActionPerformed(evt);
+            }
+        });
         getContentPane().add(button4, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 385, 180, 30));
+
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton1.setText("supprimer client");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 440, 180, 30));
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -72,7 +88,7 @@ public class banquier1 extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 230, 480, 370));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Study\\L3\\GL\\Projet\\Code\\projGL\\src\\screens\\banka.jpg")); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/screens/banka.jpg"))); // NOI18N
         jLabel2.setText("jLabel2");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-3, -4, 1300, 630));
 
@@ -85,6 +101,14 @@ public class banquier1 extends javax.swing.JFrame {
 a.show();
 dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_button3ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void button4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_button4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -124,6 +148,7 @@ dispose();        // TODO add your handling code here:
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private java.awt.Button button3;
     private java.awt.Button button4;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable2;
