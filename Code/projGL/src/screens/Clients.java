@@ -43,8 +43,6 @@ public class Clients extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         tableClientsPhysic = new javax.swing.JTable();
         cbAffichage = new javax.swing.JComboBox<>();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -100,7 +98,7 @@ public class Clients extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(tableClientsPhysic);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 530, 370));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 530, 370));
 
         cbAffichage.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Physic", "Moral" }));
         cbAffichage.addActionListener(new java.awt.event.ActionListener() {
@@ -109,29 +107,6 @@ public class Clients extends javax.swing.JFrame {
             }
         });
         getContentPane().add(cbAffichage, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 140, 150, -1));
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "designation", "activiter", "N° RC", "N° MF"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(jTable1);
-
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 160, 480, 370));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/screens/banka.jpg"))); // NOI18N
         jLabel2.setText("jLabel2");
@@ -259,9 +234,7 @@ dispose();        // TODO add your handling code here:
     private java.awt.Button btnSelect;
     private javax.swing.JComboBox<String> cbAffichage;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTable tableClientsPhysic;
     // End of variables declaration//GEN-END:variables
 }
