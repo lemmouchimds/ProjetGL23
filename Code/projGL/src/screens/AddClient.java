@@ -17,7 +17,7 @@ public class AddClient extends javax.swing.JFrame {
      * Creates new form Ajclient2
      */
     public AddClient() {
-        initComponents();
+      initComponents();
     }
 
     /**
@@ -213,7 +213,6 @@ public class AddClient extends javax.swing.JFrame {
         jLabel13.setText("Email");
         getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 390, -1, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/screens/banka.jpg"))); // NOI18N
         jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-3, -4, 1300, 630));
 
