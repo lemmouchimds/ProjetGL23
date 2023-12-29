@@ -7,6 +7,7 @@ package screens;
 import javax.swing.table.DefaultTableModel;
 
 import dto.CompteDto;
+import projgl.tableType;
 import projgl.db.dbControl;
 
 //import screens.banquier1;
@@ -23,7 +24,7 @@ public class Comptes extends javax.swing.JFrame {
         initComponents();
         this.idClient = idClient;
         model = new DefaultTableModel();
-        jTable1.setModel(model);
+        tableMoral.setModel(model);
         model.addColumn("Numero");
         model.addColumn("Date de creation");
         model.addColumn("Solde");
@@ -71,7 +72,7 @@ public class Comptes extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         taSolde = new javax.swing.JTextArea();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tableMoral = new javax.swing.JTable();
         btnDelete = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
@@ -139,7 +140,7 @@ public class Comptes extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 350, -1, -1));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tableMoral.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -158,11 +159,16 @@ public class Comptes extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tableMoral);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, 390, 160));
 
         btnDelete.setText("Suprimer Compte");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 200, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Study\\L3\\GL\\Projet\\Code\\projGL\\src\\screens\\banka.jpg")); // NOI18N
@@ -226,21 +232,46 @@ public class Comptes extends javax.swing.JFrame {
 
     private void btnSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectActionPerformed
         //get selected row
-        int row = jTable1.getSelectedRow();
+        int row = tableMoral.getSelectedRow();
         //verify that exactly one row is selected
-        if (row == -1 || jTable1.getSelectedRowCount() != 1) {
+        if (row == -1 || tableMoral.getSelectedRowCount() != 1) {
             //show error message to the user in a dialog
             javax.swing.JOptionPane.showMessageDialog(this, "Please select exactly one row to edit.");
             return;
         }
 
         //get the selected Compte
-        int idCompte = (int) jTable1.getValueAt(row, 0);
+        int idCompte = (int) tableMoral.getValueAt(row, 0);
         currentCompte = db.findCompte(idCompte);
 
         taSolde.setText(String.valueOf(currentCompte.getSolde()));
         
     }//GEN-LAST:event_btnSelectActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        //get selected row
+        int row = tableMoral.getSelectedRow();
+        //verify that exactly one row is selected
+        if (row == -1 || tableMoral.getSelectedRowCount() != 1) {
+            //show error message to the user in a dialog
+            javax.swing.JOptionPane.showMessageDialog(this, "Please select exactly one row to edit.");
+            return;
+        }
+
+        //get the selected Compte
+        int idCompte = (int) tableMoral.getValueAt(row, 0);
+        currentCompte = db.findCompte(idCompte);
+        //confirm deletion
+        int result = javax.swing.JOptionPane.showConfirmDialog(this, "Are you sure you want to delete this Compte?", "Delete Compte", javax.swing.JOptionPane.YES_NO_OPTION);
+        if (result != javax.swing.JOptionPane.YES_OPTION) {
+            return;
+        }
+
+        //delete the Compte
+        db.delete(idCompte, tableType.compte);
+        refresh();
+
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -288,10 +319,10 @@ public class Comptes extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextPane jTextPane1;
     private javax.swing.JTextPane jTextPane2;
     private javax.swing.JTextArea taSolde;
+    private javax.swing.JTable tableMoral;
     private javax.swing.JTextField tfDebCred;
     // End of variables declaration//GEN-END:variables
 }

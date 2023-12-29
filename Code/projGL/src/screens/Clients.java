@@ -32,7 +32,7 @@ public class Clients extends javax.swing.JFrame {
         modelPhy.addColumn("Profession");
 
         modelMor = new DefaultTableModel();
-        jTable1.setModel(modelMor);
+        tableMoral.setModel(modelMor);
         modelMor.addColumn("Raison sociale");
         modelMor.addColumn("Secteur d'activite");
         modelMor.addColumn("N° RC");
@@ -54,7 +54,7 @@ public class Clients extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         btnAddClient = new java.awt.Button();
@@ -63,8 +63,8 @@ public class Clients extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         tableClientsPhysic = new javax.swing.JTable();
         cbAffichage = new javax.swing.JComboBox<>();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        scrollMoral = new javax.swing.JScrollPane();
+        tableMoral = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -100,21 +100,22 @@ public class Clients extends javax.swing.JFrame {
         getContentPane().add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 310, 180, 30));
 
         tableClientsPhysic.setModel(new javax.swing.table.DefaultTableModel(
-                new Object[][] {
-                        { null, null, null, null },
-                        { null, null, null, null },
-                        { null, null, null, null },
-                        { null, null, null, null }
-                },
-                new String[] {
-                        "Matricule", "Nom", "Prenom", "Date de naissance"
-                }) {
-            Class[] types = new Class[] {
-                    java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Matricule", "Nom", "Prenom", "Date de naissance"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
-                return types[columnIndex];
+                return types [columnIndex];
             }
         });
         jScrollPane2.setViewportView(tableClientsPhysic);
@@ -129,27 +130,28 @@ public class Clients extends javax.swing.JFrame {
         });
         getContentPane().add(cbAffichage, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 140, 150, -1));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-                new Object[][] {
-                        { null, null, null, null },
-                        { null, null, null, null },
-                        { null, null, null, null },
-                        { null, null, null, null }
-                },
-                new String[] {
-                        "designation", "activiter", "N° RC", "N° MF"
-                }) {
-            Class[] types = new Class[] {
-                    java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class
+        tableMoral.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "designation", "activiter", "N° RC", "N° MF"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class
             };
 
             public Class getColumnClass(int columnIndex) {
-                return types[columnIndex];
+                return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        scrollMoral.setViewportView(tableMoral);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 160, 480, 370));
+        getContentPane().add(scrollMoral, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 160, 480, 370));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/screens/banka.jpg"))); // NOI18N
         jLabel2.setText("jLabel2");
@@ -249,12 +251,17 @@ public class Clients extends javax.swing.JFrame {
     private void refresh() {
         int index = cbAffichage.getSelectedIndex();
 
+
         switch (index) {
             case 0:
                 afficherClientsPhysic();
+                scrollMoral.setVisible(false);
+                tableMoral.setVisible(false);
                 break;
-            case 1:
+                case 1:
                 afficherClientsMoral();
+                scrollMoral.setVisible(true);
+                tableMoral.setVisible(true);
                 break;
             default:
                 break;
@@ -312,9 +319,9 @@ public class Clients extends javax.swing.JFrame {
     private java.awt.Button btnSelect;
     private javax.swing.JComboBox<String> cbAffichage;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JScrollPane scrollMoral;
     private javax.swing.JTable tableClientsPhysic;
+    private javax.swing.JTable tableMoral;
     // End of variables declaration//GEN-END:variables
 }
