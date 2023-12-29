@@ -4,6 +4,11 @@
  */
 package screens;
 
+import javax.swing.table.DefaultTableModel;
+
+import dto.CompteDto;
+import projgl.db.dbControl;
+
 //import screens.banquier1;
 /**
  *
@@ -14,10 +19,37 @@ public class Comptes extends javax.swing.JFrame {
     /**
      * Creates new form Comptes
      */
-    public Comptes() {
+    public Comptes(int idClient) {
         initComponents();
+        this.idClient = idClient;
+        model = new DefaultTableModel();
+        jTable1.setModel(model);
+        model.addColumn("Numero");
+        model.addColumn("Date de creation");
+        model.addColumn("Solde");
+        model.addColumn("Type");
+        model.addColumn("Max");
+        refresh();
     }
 
+    private void refresh() {
+        var comptes = db.findAllCompte(idClient);
+        model.setRowCount(0);
+        for (var compte : comptes) {
+            model.addRow(new Object[] {
+                compte.getIdCompte(),
+                compte.getDate(),
+                compte.getSolde(),
+                compte.getType(),
+                compte.getMax()
+            });
+        }
+    }
+
+    DefaultTableModel model;
+    dbControl db = new dbControl();
+    int idClient;
+    CompteDto currentCompte;
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -35,9 +67,9 @@ public class Comptes extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         jTextPane1 = new javax.swing.JTextPane();
         btnReturn = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        tfDebCred = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        taSolde = new javax.swing.JTextArea();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         btnDelete = new javax.swing.JButton();
@@ -99,11 +131,11 @@ public class Comptes extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnReturn, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, 30));
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 370, 90, -1));
+        getContentPane().add(tfDebCred, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 370, 90, -1));
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane2.setViewportView(jTextArea1);
+        taSolde.setColumns(20);
+        taSolde.setRows(5);
+        jScrollPane2.setViewportView(taSolde);
 
         getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 350, -1, -1));
 
@@ -142,11 +174,48 @@ public class Comptes extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnValidateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnValidateActionPerformed
-        // TODO add your handling code here:
+        //try get the value from the text field as an integer
+        double montant;
+        try {
+            montant = Double.parseDouble(tfDebCred.getText());
+        } catch (NumberFormatException e) {
+            //show error message to the user in a dialog
+            javax.swing.JOptionPane.showMessageDialog(this, "Please enter a valid number.");
+            return;
+        }
+
+        //verify that a Compte is selected
+        if (currentCompte == null) {
+            //show error message to the user in a dialog
+            javax.swing.JOptionPane.showMessageDialog(this, "Please select a Compte.");
+            return;
+        }
+
+        System.out.println("montant: " + montant);
+        if (montant < 0) {
+            boolean success = currentCompte.debiter(-montant);
+            if (!success) {
+                //show error message to the user in a dialog
+                javax.swing.JOptionPane.showMessageDialog(this, "The Compte does not have enough money.");
+            }
+            else
+            {
+                tfDebCred.setText("");
+            }
+        }
+        else {
+            currentCompte.crediter(montant);
+            tfDebCred.setText("");
+        }
+
+        refresh();
+        
     }//GEN-LAST:event_btnValidateActionPerformed
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
-        // TODO add your handling code here:
+        AddCompte a = new AddCompte(idClient);
+        a.show();
+        dispose();
     }//GEN-LAST:event_btnCreateActionPerformed
 
     private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnActionPerformed
@@ -156,7 +225,21 @@ public class Comptes extends javax.swing.JFrame {
     }//GEN-LAST:event_btnReturnActionPerformed
 
     private void btnSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectActionPerformed
-        // TODO add your handling code here:
+        //get selected row
+        int row = jTable1.getSelectedRow();
+        //verify that exactly one row is selected
+        if (row == -1 || jTable1.getSelectedRowCount() != 1) {
+            //show error message to the user in a dialog
+            javax.swing.JOptionPane.showMessageDialog(this, "Please select exactly one row to edit.");
+            return;
+        }
+
+        //get the selected Compte
+        int idCompte = (int) jTable1.getValueAt(row, 0);
+        currentCompte = db.findCompte(idCompte);
+
+        taSolde.setText(String.valueOf(currentCompte.getSolde()));
+        
     }//GEN-LAST:event_btnSelectActionPerformed
 
     /**
@@ -189,7 +272,7 @@ public class Comptes extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Comptes().setVisible(true);
+                //new Comptes().setVisible(true);
             }
         });
     }
@@ -206,9 +289,9 @@ public class Comptes extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextPane jTextPane1;
     private javax.swing.JTextPane jTextPane2;
+    private javax.swing.JTextArea taSolde;
+    private javax.swing.JTextField tfDebCred;
     // End of variables declaration//GEN-END:variables
 }

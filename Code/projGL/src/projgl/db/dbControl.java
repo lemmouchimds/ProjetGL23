@@ -81,20 +81,19 @@ public class dbControl {
             return false;
         }
     }
-    
-    public boolean matExist(int mat)
-    {
+
+    public boolean matExist(int mat) {
         try {
             String sql = "SELECT * FROM " + ClientDto.SQLtableName + " WHERE " + ClientDto.SQLidClient + " = ?";
-        PreparedStatement p = cnx.prepareStatement(sql);
-        p.setInt(1, mat);
-        ResultSet result = p.executeQuery();
-        return result.next();
+            PreparedStatement p = cnx.prepareStatement(sql);
+            p.setInt(1, mat);
+            ResultSet result = p.executeQuery();
+            return result.next();
         } catch (Exception e) {
             System.out.println("projgl.db.dbControl.matExist() : " + e.getMessage());
             return false;
         }
-        
+
     }
 
     // #region client
@@ -192,15 +191,15 @@ public class dbControl {
     public void insertCompte(CompteDto compteDto) {
         try {
             String sql = "INSERT INTO compte " +
-                    "(idClient, numCompte, solde, dateCreation, typeCompte) " +
+                    "(idClient, solde, date, type, max) " +
                     "VALUES (?, ?, ?, ?, ?)";
 
             PreparedStatement p = cnx.prepareStatement(sql);
             p.setInt(1, compteDto.getIdClient());
-            p.setInt(2, compteDto.getIdClient());
-            p.setDouble(3, compteDto.getSolde());
-            p.setDate(4, (Date) compteDto.getDate());
-            p.setInt(5, compteDto.getType());
+            p.setDouble(2, compteDto.getSolde());
+            p.setDate(3, (Date) compteDto.getDate());
+            p.setInt(4, compteDto.getType());
+            p.setDouble(5, compteDto.getMax());
             p.executeUpdate();
         } catch (Exception e) {
             System.out.println("projgl.db.dbControl.insertCompte() : " + e.getMessage());
@@ -210,16 +209,31 @@ public class dbControl {
     public void modifyCompte(CompteDto compteDto) {
         try {
             String sql = "UPDATE compte SET " +
-                    "idClient = ?, numCompte = ?, solde = ?, dateCreation = ?, typeCompte = ? " +
+                    "idClient = ?, solde = ?, date = ?, type = ?, max = ? " +
                     "WHERE idCompte = ?";
 
             PreparedStatement p = cnx.prepareStatement(sql);
             p.setInt(1, compteDto.getIdClient());
-            p.setInt(2, compteDto.getIdClient());
-            p.setDouble(3, compteDto.getSolde());
-            p.setDate(4, (Date) compteDto.getDate());
-            p.setInt(5, compteDto.getType());
-            p.setInt(6, compteDto.getIdCompte());
+            p.setDouble(2, compteDto.getSolde());
+            p.setDate(3, (Date) compteDto.getDate());
+            p.setInt(4, compteDto.getType());
+            p.setInt(5, compteDto.getIdCompte());
+            p.setFloat(6, compteDto.getMax());
+            p.executeUpdate();
+        } catch (Exception e) {
+            System.out.println("projgl.db.dbControl.modifyCompte() : " + e.getMessage());
+        }
+    }
+
+    public void modifySolde(int idCompte, double solde) {
+        try {
+            String sql = "UPDATE compte SET " +
+                    "solde = ? " +
+                    "WHERE idCompte = ?";
+
+            PreparedStatement p = cnx.prepareStatement(sql);
+            p.setDouble(1, solde);
+            p.setInt(2, idCompte);
             p.executeUpdate();
         } catch (Exception e) {
             System.out.println("projgl.db.dbControl.modifyCompte() : " + e.getMessage());

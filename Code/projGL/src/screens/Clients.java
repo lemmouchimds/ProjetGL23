@@ -19,14 +19,17 @@ public class Clients extends javax.swing.JFrame {
      */
     public Clients() {
         initComponents();
-        model = new DefaultTableModel();
+        modelPhy = new DefaultTableModel();
+        tableClientsPhysic.setModel(modelPhy);
+        
         // model.addColumn("Matricule");
         refresh();
 
     }
 
     dbControl dbc = new dbControl();
-    DefaultTableModel model;
+    DefaultTableModel modelPhy;
+    DefaultTableModel modelMor;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -216,21 +219,21 @@ dispose();        // TODO add your handling code here:
 
     private void afficherClientsPhysic() {
         System.out.println("running");
-        model.setRowCount(0);
-        model.setColumnCount(0);
-        model.addColumn("Matricule");
-        model.addColumn("Nom");
-        model.addColumn("Prenom");
-        model.addColumn("Date de naissance");
-        model.addColumn("Adresse");
-        model.addColumn("Telephone");
-        model.addColumn("Email");
-        model.addColumn("Profession");
+        modelPhy.setRowCount(0);
+        modelPhy.setColumnCount(0);
+        modelPhy.addColumn("Matricule");
+        modelPhy.addColumn("Nom");
+        modelPhy.addColumn("Prenom");
+        modelPhy.addColumn("Date de naissance");
+        modelPhy.addColumn("Adresse");
+        modelPhy.addColumn("Telephone");
+        modelPhy.addColumn("Email");
+        modelPhy.addColumn("Profession");
 
         var list = dbc.findAllClient();
         for (var c : list) {
             if (c.isPhysic) {
-                model.addRow(new Object[]{c.getIdClient(), c.getNom(), c.getPrenom(), c.getDate()
+                modelPhy.addRow(new Object[]{c.getIdClient(), c.getNom(), c.getPrenom(), c.getDate()
                 , c.getAddress(), c.getTel(), c.getEmail(), c.getProfession()});
             }
             
@@ -238,18 +241,18 @@ dispose();        // TODO add your handling code here:
     }
 
     private void afficherClientsMoral() {
-        model.setRowCount(0);
-        model.setColumnCount(0);
-        model.addColumn("Matricule");
-        model.addColumn("Nom");
-        model.addColumn("Prenom");
-        model.addColumn("Date de naissance");
-        model.addColumn("Adresse");
-        model.addColumn("Telephone");
-        model.addColumn("Email");
+        modelPhy.setRowCount(0);
+        modelPhy.setColumnCount(0);
+        modelPhy.addColumn("Matricule");
+        modelPhy.addColumn("Nom");
+        modelPhy.addColumn("Prenom");
+        modelPhy.addColumn("Date de naissance");
+        modelPhy.addColumn("Adresse");
+        modelPhy.addColumn("Telephone");
+        modelPhy.addColumn("Email");
 
-        model.addColumn("Raison sociale");
-        model.addColumn("Secteur d'activite");
+        modelPhy.addColumn("Raison sociale");
+        modelPhy.addColumn("Secteur d'activite");
         
     }
 

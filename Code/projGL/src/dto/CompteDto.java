@@ -7,6 +7,8 @@ package dto;
 import java.sql.ResultSet;
 import java.util.Date;
 
+import projgl.db.dbControl;
+
 /**
  *
  * @author lemmo
@@ -56,6 +58,8 @@ public class CompteDto {
             return null;
         }
     }
+
+    // #region Getters & Setters
 
     /**
      * @return the idCompte
@@ -141,4 +145,47 @@ public class CompteDto {
         this.max = max;
     }
 
+    // #endregion
+
+    public boolean debiter(double montant) {
+        dbControl db = new dbControl();
+
+        switch (type) {
+            case 1:
+                if (this.solde - montant < 0) {
+
+                    return false;
+                } else {
+                    this.solde -= montant;
+                    db.modifySolde(this.idCompte, this.solde);
+                    return true;
+                }
+                
+                case 2:
+                if (this.solde - montant < -this.max) {
+                    return false;
+                } else {
+                    this.solde -= montant;
+                    db.modifySolde(this.idCompte, this.solde);
+                    return true;
+                }
+                case 3:
+                if (this.solde - montant < 0) {
+                    return false;
+                } else {
+                    this.solde -= montant;
+                    db.modifySolde(this.idCompte, this.solde);
+                    return true;
+                }
+            default:
+                return false;
+        }
+
+    }
+
+    public void crediter(double montant) {
+        this.solde += montant;
+        dbControl db = new dbControl();
+        db.modifySolde(this.idCompte, this.solde);
+    }
 }

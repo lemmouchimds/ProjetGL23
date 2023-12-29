@@ -213,8 +213,10 @@ public class AddClient extends javax.swing.JFrame {
         jLabel13.setText("Email");
         getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 390, -1, -1));
 
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/screens/bank3.png"))); // NOI18N
         jLabel1.setText("jLabel1");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-3, -4, 1300, 630));
+        jLabel1.setPreferredSize(new java.awt.Dimension(1300, 450));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -30, 1010, 590));
 
         pack();
         setLocationRelativeTo(null);
