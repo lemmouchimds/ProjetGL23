@@ -158,23 +158,26 @@ public class CompteDto {
                 } else {
                     this.solde -= montant;
                     db.modifySolde(this.idCompte, this.solde);
+                    insertHistorique(montant);
                     return true;
                 }
-                
-                case 2:
+
+            case 2:
                 if (this.solde - montant < -this.max) {
                     return false;
                 } else {
                     this.solde -= montant;
                     db.modifySolde(this.idCompte, this.solde);
+                    insertHistorique(montant);
                     return true;
                 }
-                case 3:
+            case 3:
                 if (this.solde - montant < 0) {
                     return false;
                 } else {
                     this.solde -= montant;
                     db.modifySolde(this.idCompte, this.solde);
+                    insertHistorique(montant);
                     return true;
                 }
             default:
@@ -186,6 +189,22 @@ public class CompteDto {
     public void crediter(double montant) {
         this.solde += montant;
         dbControl db = new dbControl();
+        insertHistorique(montant);
         db.modifySolde(this.idCompte, this.solde);
+    }
+
+    private void insertHistorique(double montant) {
+        dbControl db = new dbControl();
+        var sqlDate = new java.sql.Date(new java.util.Date().getTime());
+        System.out.println("inserting in historique");
+        var hist = new HistoriqueDto(0, sqlDate, montant, this.idCompte);
+        System.out.println("created historique");
+        System.out.println("id: " + hist.getIdHist());
+        System.out.println("date: " + hist.getDate());
+        System.out.println("solde: " + hist.getMontant());
+        System.out.println("idCompte: " + hist.getIdCompte());
+
+        db.insertHistorique(hist);
+
     }
 }

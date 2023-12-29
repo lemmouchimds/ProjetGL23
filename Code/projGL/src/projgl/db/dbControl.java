@@ -71,7 +71,7 @@ public class dbControl {
                 break;
         }
 
-        String sql = "DELETE FROM " + table + " WHERE idClient = " + idTable;
+        String sql = "DELETE FROM " + table + " WHERE " + idTable + " = " + id;
         try {
             PreparedStatement p = cnx.prepareStatement(sql);
             p.executeUpdate();
@@ -279,7 +279,7 @@ public class dbControl {
         try {
             String sql = "INSERT INTO historique " +
                     "(idCompte, date, montant) " +
-                    "VALUES (?, ?, ?, ?, ?)";
+                    "VALUES (?, ?, ?)";
 
             PreparedStatement p = cnx.prepareStatement(sql);
             p.setInt(1, historiqueDto.getIdCompte());

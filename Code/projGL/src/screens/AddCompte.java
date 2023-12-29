@@ -218,8 +218,7 @@ public class AddCompte extends javax.swing.JFrame {
                 Integer.parseInt(jComboBox1.getSelectedItem().toString()),
                 jComboBox1.getSelectedItem().equals("2") ? Float.parseFloat(tfMax.getText()) : 0);
         db.insertCompte(c);
-        //return to the previous screen
-        dispose();
+        returnBack();
 
 
     }// GEN-LAST:event_btnOKActionPerformed
@@ -234,10 +233,14 @@ public class AddCompte extends javax.swing.JFrame {
     }// GEN-LAST:event_tfMaxActionPerformed
 
     private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnReturnActionPerformed
-        Comptes a = new Comptes(idClient);
-        a.show();
-        dispose();// TODO add your handling code here:
+        returnBack();
     }// GEN-LAST:event_btnReturnActionPerformed
+
+    private void returnBack() {
+        Comptes a = new Comptes(idClient);
+        a.setVisible(true);
+        dispose();
+    }
 
     private void tfMaxKeyTyped(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_tfMaxKeyTyped
         // TODO add your handling code here:
